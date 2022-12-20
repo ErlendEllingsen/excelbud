@@ -38,7 +38,7 @@
       {
           "action": "MAPCELLS",
           "key": {
-              "default": "Ctrl+Alt+3"
+              "default": "Ctrl+Shift+Alt+3"
           }
       },
       {
