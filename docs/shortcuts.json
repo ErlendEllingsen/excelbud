@@ -13,14 +13,8 @@
       {
           "id": "MAPCELLS",
           "type": "ExecuteFunction",
-          "name": "Cycle through cell colors"
-      },
-      {
-          "id": "TESTCONFLICT",
-          "type": "ExecuteFunction",
-          "name": "Test the conflict modal"
+          "name": "Assign colors"
       }
-
   ],
   "shortcuts": [
       {
@@ -38,13 +32,7 @@
       {
           "action": "MAPCELLS",
           "key": {
-              "default": "Ctrl+Shift+Alt+3"
-          }
-      },
-      {
-          "action": "TESTCONFLICT",
-          "key": {
-              "default": "Ctrl+R"
+              "default": "Ctrl+Alt+3"
           }
       }
   ]
