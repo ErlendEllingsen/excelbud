@@ -11,7 +11,7 @@
           "name": "Hide task pane for add-in"
       },
       {
-          "id": "SETCOLOR",
+          "id": "MAPCELLS",
           "type": "ExecuteFunction",
           "name": "Cycle through cell colors"
       },
@@ -36,7 +36,7 @@
           }
       },
       {
-          "action": "SETCOLOR",
+          "action": "MAPCELLS",
           "key": {
               "default": "Ctrl+Alt+3"
           }

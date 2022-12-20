@@ -82,5 +82,5 @@
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
-  <ExtendedOverrides Url="https://contoso.com/addin/shortcuts.json"></ExtendedOverrides>
+  <ExtendedOverrides Url="https://erlendellingsen.github.io/excelbud/shortcuts.json"></ExtendedOverrides>
 </OfficeApp>
