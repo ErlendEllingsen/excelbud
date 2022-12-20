@@ -14,6 +14,13 @@ let isOfficeInitialized = false;
 
 const title = "Contoso Task Pane Add-in";
 
+const modelColors = {
+  'input': '#ffff71', // yellow
+  'formula': '#f7c560', // darker yellow / orange
+  'formula_other_sheet_dependent': 'cyan', // cyan
+  'formula_other_file_dependent': 'd'
+}
+
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
@@ -58,31 +65,34 @@ Office.actions.associate("MAPCELLS", async function () {
             continue;
           }
 
+          console.log(JSON.stringify(cell));
+          console.log(formulaContent);
+
           const isNumeric = !isNaN(Number(formulaContent));
           if (isNumeric) {
-            cell.format.fill.color = "yellow";
+            cell.format.fill.color = "#ffff71"; // yellow
             // await context.sync();
             continue;
           }
 
           // Detect reference to another worksheet
-          if ((formulaContent as string).includes('!')) {
+          const cellRefRegex = /[a-zA-Z$]+[0-9$]+/;
+          const isFormula = cellRefRegex.test(formulaContent);
+
+          if ((formulaContent as string).includes('!') && isFormula) {
             cell.format.fill.color = "cyan";
             // await context.sync();
             continue;
           }
 
           // Check for characters in the formula
-          const isFormula = /[a-zA-Z]/.test(formulaContent);
           if (isFormula) {
-            cell.format.fill.color = "red";
+            cell.format.fill.color = "#f7c560"; // darker yellow / orange
             // await context.sync();
             continue;
           }
 
-          console.log(JSON.stringify(cell));
-
-          console.log(formulaContent);
+          
 
         }
       }
