@@ -11,28 +11,10 @@ export interface AppProps {
   isOfficeInitialized: boolean;
 }
 
-export interface AppState {
-  listItems: HeroListItem[];
-}
+
 
 const App: React.FC<AppProps> = (props) => {
-  const [listItems, setListItems] = React.useState<HeroListItem[]>([]);
-  React.useEffect(() => {
-    setListItems([
-      {
-        icon: "Ribbon",
-        primaryText: "Achieve more with Office integration",
-      },
-      {
-        icon: "Unlock",
-        primaryText: "Unlock features and functionality",
-      },
-      {
-        icon: "Design",
-        primaryText: "Create and visualize like a pro",
-      },
-    ]);
-  }, []);
+  
 
 
 
@@ -151,14 +133,18 @@ const App: React.FC<AppProps> = (props) => {
   return (
     <div className="ms-welcome">
       <Header logo={require("./../../../assets/logo-filled.png")} title={title} message="Welcome" />
-      <HeroList message="Discover what Office Add-ins can do for you today!" items={listItems}>
-        <p className="ms-font-l">
+      <ul>
+        <li>Ctrl + Alt + 3 <strong>Map cells</strong></li>
+        <li>Ctrl + Alt + 4 <strong>Invert signs</strong></li>
+      </ul>
+      {/* <HeroList message="Discover what Office Add-ins can do for you today!" items={listItems}> */}
+        {/* <p className="ms-font-l">
           Modify the source files, then click <b>Run</b>.
-        </p>
-        <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={click}>
+        </p> */}
+        {/* <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={click}>
           Run
-        </DefaultButton>
-      </HeroList>
+        </DefaultButton> */}
+      {/* </HeroList> */}
     </div>
   );
 }

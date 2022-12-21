@@ -43,7 +43,7 @@
       {
         "action": "INVERTSIGN",
         "key": {
-            "default": "Ctrl+Alt+4"
+            "default": ["Ctrl+Alt+4", "Ctrl+Shift+N"]
         }
     }
   ]
