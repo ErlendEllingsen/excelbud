@@ -14,7 +14,12 @@
           "id": "MAPCELLS",
           "type": "ExecuteFunction",
           "name": "Assign colors"
-      }
+      },
+      {
+        "id": "INVERTSIGN",
+        "type": "ExecuteFunction",
+        "name": "Invert sign"
+    }
   ],
   "shortcuts": [
       {
@@ -34,6 +39,12 @@
           "key": {
               "default": "Ctrl+Alt+3"
           }
-      }
+      },
+      {
+        "action": "INVERTSIGN",
+        "key": {
+            "default": "Ctrl+Alt+4"
+        }
+    }
   ]
 }
