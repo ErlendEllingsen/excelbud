@@ -92,72 +92,80 @@ Office.actions.associate("MAPCELLS", async function () {
             continue;
           }
 
-          
+
 
         }
       }
 
       await context.sync();
 
-
-
-      // console.log(usedRange.values);
-      // usedRange.values.forEach(async (row, rowIndex) => {
-      //   row.forEach(async (cell, colIndex) => {
-
-      //     // get refernece to cell
-      //     const cellRef = usedRange.getCell(rowIndex, colIndex);
-      //     cellRef.load("address");
-      //     await context.sync();
-
-
-
-      //     console.log(`Cell ${rowIndex}, ${colIndex} has value ${cell} at address ${cellRef.address}`);
-      //   });
-      // });
-
-      // /**
-      //  * Insert your Excel code here
-      //  */
-      // const range = context.workbook.getSelectedRange();
-
-      // // Read the range address
-      // range.load("address");
-
-      // // Update the fill color
-      // range.format.fill.color = "yellow";
-
-      // await context.sync();
-      // console.log(`The range address was ${range.address}.`);
     });
   } catch (error) {
     console.error(error);
   }
 
+});
+
+Office.actions.associate("INVERTSIGN", async function () {
+
+  const context = new Excel.RequestContext();
+  try {
+
+    await Excel.run(async (context) => {
+
+      const sheet = context.workbook.worksheets.getActiveWorksheet();
+
+      // Get active cells
+      const range = context.workbook.getSelectedRange();
+      range.load(["address", "rowCount", "values"]);
+      await context.sync();
+
+      for (let row = 0; row < range.rowCount; row++) {
+        for (let col = 0; col < range.values[row].length; col++) {
+          const cell = range.getCell(row, col);
+          cell.load(["address", "formulas", "formulasR1C1", "values", "valueTypes"]);
+          await context.sync();
+          console.log(`Cell ${row}, ${col} has value ${range.values[row][col]} at address ${cell.address}`);
+          const cellValue = range.values[row][col];
+
+          // Skip empty cells
+          if (cellValue === undefined || cellValue === null || cellValue === "") {
+            continue;
+          }
+
+          // Determine if the range object (cell) references another cell
+          const formulaContent = `${cell.formulas[0][0]}`;
+
+          const wrappedNegativeRegex = /^=-1\*\(.*\)$/;
+          const isWrappedNegative = wrappedNegativeRegex.test(formulaContent);
+          console.log(isWrappedNegative)
+
+          if (isWrappedNegative) {
+            // Remove beginning and end of formula
+            const unwrappedFormula = '=' + formulaContent.substring(5, formulaContent.length - 1);
+            cell.formulas = [[unwrappedFormula]];
+            await context.sync();
+            continue;
+          }
+
+          const beganWithEquals = formulaContent.startsWith('=');
+          const oldContent = beganWithEquals ? formulaContent.substring(1, formulaContent.length) : formulaContent;
+
+          // Wrap with negative sign
+          const wrappedFormula = `=-1*(${oldContent})`;
+          cell.formulas = [[wrappedFormula]];
+          await context.sync();
 
 
-  // const rangeFormat = range.format;
-  // rangeFormat.fill.load();
-  // const colors = ["#FFFFFF", "#C7CC7A", "#7560BA", "#9DD9D2", "#FFE1A8", "#E26D5C"];
-  // return context.sync().then(function() {
-  //   const rangeTarget = context.workbook.getSelectedRange();
-  //   let currentColor = -1;
-  //   for (let i = 0; i < colors.length; i++) {
-  //     if (colors[i] == rangeFormat.fill.color) {
-  //       currentColor = i;
-  //       break;
-  //     }
-  //   }
-  //   if (currentColor == -1) {
-  //     currentColor = 0;
-  //   } else if (currentColor == colors.length - 1) {
-  //     currentColor = 0;
-  //   } else {
-  //     currentColor++;
-  //   }
-  //   rangeTarget.format.fill.color = colors[currentColor];
-  //   return context.sync();
-  // });
+        }
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
+
+
 });
 
 
