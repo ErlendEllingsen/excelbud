@@ -1,9 +1,9 @@
 {
-  "name": "office-addin-taskpane-react",
+  "name": "excelbud",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OfficeDev/Office-Addin-TaskPane-React.git"
+    "url": "https://github.com/ErlendEllingsen/excelbud.git"
   },
   "license": "MIT",
   "config": {

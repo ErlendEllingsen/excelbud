@@ -85,34 +85,6 @@ const App: React.FC<AppProps> = (props) => {
 
 
 
-        // console.log(usedRange.values);
-        // usedRange.values.forEach(async (row, rowIndex) => {
-        //   row.forEach(async (cell, colIndex) => {
-
-        //     // get refernece to cell
-        //     const cellRef = usedRange.getCell(rowIndex, colIndex);
-        //     cellRef.load("address");
-        //     await context.sync();
-
-
-
-        //     console.log(`Cell ${rowIndex}, ${colIndex} has value ${cell} at address ${cellRef.address}`);
-        //   });
-        // });
-
-        // /**
-        //  * Insert your Excel code here
-        //  */
-        // const range = context.workbook.getSelectedRange();
-
-        // // Read the range address
-        // range.load("address");
-
-        // // Update the fill color
-        // range.format.fill.color = "yellow";
-
-        // await context.sync();
-        // console.log(`The range address was ${range.address}.`);
       });
     } catch (error) {
       console.error(error);
@@ -137,14 +109,7 @@ const App: React.FC<AppProps> = (props) => {
         <li>Ctrl + Alt + 3 <strong>Map cells</strong></li>
         <li>Ctrl + Alt + 4 <strong>Invert signs</strong></li>
       </ul>
-      {/* <HeroList message="Discover what Office Add-ins can do for you today!" items={listItems}> */}
-        {/* <p className="ms-font-l">
-          Modify the source files, then click <b>Run</b>.
-        </p> */}
-        {/* <DefaultButton className="ms-welcome__action" iconProps={{ iconName: "ChevronRight" }} onClick={click}>
-          Run
-        </DefaultButton> */}
-      {/* </HeroList> */}
+   
     </div>
   );
 }

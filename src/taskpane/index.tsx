@@ -12,7 +12,7 @@ initializeIcons();
 
 let isOfficeInitialized = false;
 
-const title = "Contoso Task Pane Add-in";
+const title = "Excelbud Task Pane Add-in";
 
 const modelColors = {
   'input': '#ffff71', // yellow
